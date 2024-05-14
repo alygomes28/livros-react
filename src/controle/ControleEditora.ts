@@ -1,9 +1,8 @@
 import Editora from '../modelo/Editora';
 
-const editoras: Editora[] = [
-    new Editora(1, 'Editora A'),
-    new Editora(2, 'Editora B'),
-    new Editora(3, 'Editora C')
+let editoras: Editora[] = [
+    new Editora(1, '')
+
 ];
 
 class ControleEditora {
@@ -14,6 +13,12 @@ class ControleEditora {
     getNomeEditora(codEditora: number){
         const editora = editoras.find(editora => editora.codEditora === codEditora);
         return editora ? editora.nome : '';
+    }
+
+    adicionarEditora(nome: string) {
+        const novaEditora = new Editora(editoras.length + 1, nome);
+        editoras.push(novaEditora);
+        return novaEditora;
     }
 }
 

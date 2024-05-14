@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Table, Container } from 'reactstrap'; // Importa os componentes Button, Table e Container do reactstrap
+import { Link } from 'react-router-dom'; // Importe o Link do react-router-dom
 import ControleLivros from './controle/ControleLivros';
 import ControleEditora from './controle/ControleEditora';
 
@@ -41,8 +41,7 @@ const LivroLista = () => {
                     </ul>
                 </td>
                 <td>
-                    {/* Botão de exclusão com estilo Bootstrap usando reactstrap */}
-                    <Button color="danger" onClick={() => excluirLivro(livro.codigo)}>Excluir</Button>
+                    <button className="btn btn-danger" onClick={() => excluirLivro(livro.codigo)}>Excluir</button>
                 </td>
             </tr>
         );
@@ -50,27 +49,24 @@ const LivroLista = () => {
 
     return (
         <main>
-            <h1 className="text-center mb-5">Lista de Livros</h1>
-            {/* Container para centralizar a tabela */}
-            <Container className="text-center">
-                {/* Tabela Bootstrap estilizada usando reactstrap */}
-                <Table>
-                    <thead>
-                        <tr>
-                            <th className="fs-5">Título</th>
-                            <th className="fs-5">Editora</th>
-                            <th className="fs-5">Resumo</th>
-                            <th className="fs-5">Autores</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {livros.map(livro => (
-                            <LinhaLivro key={livro.codigo} livro={livro} />
-                        ))}
-                    </tbody>
-                </Table>
-            </Container>
+            <h1>Lista de Livros</h1>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Editora</th>
+                        <th>Resumo</th>
+                        <th>Autores</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {livros.map(livro => (
+                        <LinhaLivro key={livro.codigo} livro={livro} />
+                    ))}
+                </tbody>
+            </table>
+            <Link to="../dados" className="btn btn-success">Novo Livro</Link>
         </main>
     );
 };
